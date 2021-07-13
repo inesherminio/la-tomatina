@@ -34,6 +34,7 @@ class Game {
       if (event.code === "Space") {
         this.generateTomato();
         this.player.side = this.player.side === "left" ? "right" : "left";
+        this.player.tomatoSize = Math.round(Math.random() * 2);
       }
     });
   };

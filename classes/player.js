@@ -12,6 +12,7 @@ class Player {
     this.tomatoImage.src = "./images/tomato.png";
     this.ctx = context;
     this.side = "left";
+    this.tomatoSize = Math.round(Math.random() * 2);
   }
 
   draw = () => {
@@ -26,9 +27,9 @@ class Player {
     this.ctx.drawImage(
       this.tomatoImage,
       this.side === "left" ? this.x - 18 : this.x + tomatoX,
-      this.y - 10,
-      this.width / 3,
-      this.height / 3
+      this.tomatoSize > 1 ? this.y - 10 : this.y - 30,
+      this.tomatoSize > 1 ? this.width / 3 : this.width / 2,
+      this.tomatoSize > 1 ? this.height / 3 : this.height / 2
     );
   };
 
