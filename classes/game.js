@@ -6,9 +6,10 @@ class Game {
     this.player = new Player(context);
     this.tomatoes = [];
     this.festivaleros = [];
+    this.clothesRack = [];
     this.isGameOn = true;
     this.ctx = context;
-    this.festivaleroGenerationSpeed = 2000;
+    this.targetGenerationSpeed = 2000;
     this.levelUpSpeed = 10000;
     this.gameScore = 0;
     this.splashTime = 750;
@@ -70,7 +71,7 @@ class Game {
   hitFestivaleros = () => {
     this.festivaleros.forEach((festivalero) => {
       this.tomatoes.forEach((tomato) => {
-        if (tomato.tomatoHitsFestivalero(festivalero)) {
+        if (tomato.tomatoHitsTarget(festivalero)) {
           // search for festivalero and tomato
           const indexOfFestivalero = this.festivaleros.indexOf(festivalero);
           const indexOfTomato = this.tomatoes.indexOf(tomato);
@@ -88,20 +89,62 @@ class Game {
     });
   };
 
-  gameoverCheck = () => {
-    this.festivaleros.forEach((festivalero) => {
-      if (festivalero.floorCollision()) {
-        const indexOfFestivalero = this.festivaleros.indexOf(festivalero);
-        // stop game from running
-        this.isGameOn = false;
-        // remove the canvas
-        gameScreen.style.display = "none";
-        // display gameover screen
-        gameoverScreen.style.display = "flex";
-        // stop soundtrack
-        soundtrackObj.muted = true;
-      }
+  // Clothes-rack related methods
+
+  drawClothesRack = () => {
+    this.clothesRack.forEach((clothe) => clothe.draw());
+  };
+
+  generateClothesRack = () => {
+    const newClothe = new ClothesRack(this.ctx);
+    this.clothesRack.push(newClothe);
+  };
+
+  moveClothesRack = () => {
+    this.clothesRack.forEach((clothe) => clothe.move());
+  };
+
+  hitClothesRack = () => {
+    this.clothesRack.forEach((clothe) => {
+      this.tomatoes.forEach((tomato) => {
+        if (tomato.tomatoHitsTarget(clothe)) {
+          // play impact audio
+          impactSoundObj.play();
+          this.gameoverAction();
+        }
+      });
     });
+  };
+
+  randomTarget = () => {
+    if (Math.round(Math.random() * 10) > 2) {
+      this.generateFestivaleros();
+    } else {
+      this.generateClothesRack();
+    }
+  };
+
+  // Gameover function
+  gameoverAction = () => {
+    // stop game from running
+    this.isGameOn = false;
+    // remove the canvas
+    gameScreen.style.display = "none";
+    // display gameover screen
+    gameoverScreen.style.display = "flex";
+    // stop soundtrack
+    soundtrackObj.muted = true;
+  };
+
+  gameoverCheck = () => {
+    if (
+      this.festivaleros.forEach((festivalero) => {
+        festivalero.floorCollision();
+      }) ||
+      this.hitClothesRack()
+    ) {
+      this.gameoverAction();
+    }
   };
 
   // Game loop related methods
@@ -113,6 +156,7 @@ class Game {
   moveElements = () => {
     this.moveTomatoes();
     this.moveFestivaleros();
+    this.moveClothesRack();
   };
 
   checkAllCollisions = () => {
@@ -125,11 +169,12 @@ class Game {
     this.player.draw();
     this.drawTomatoes();
     this.drawFestivaleros();
+    this.drawClothesRack();
   };
 
   // The game loop
 
-  gameLoop = (festivaleroTimestamp = 0, levelUpTimestamp = 10000) => {
+  gameLoop = (targetTimestamp = 0, levelUpTimestamp = 10000) => {
     //clear canvas
     this.clearCanvas();
     //move elements and other actions
@@ -141,18 +186,15 @@ class Game {
     //request animation
     if (this.isGameOn) {
       requestAnimationFrame((timestamp) => {
-        if (
-          timestamp - festivaleroTimestamp >
-          this.festivaleroGenerationSpeed
-        ) {
-          this.generateFestivaleros();
-          festivaleroTimestamp = timestamp;
+        if (timestamp - targetTimestamp > this.targetGenerationSpeed) {
+          this.randomTarget();
+          targetTimestamp = timestamp;
         }
         if (timestamp - levelUpTimestamp > this.levelUpSpeed) {
-          this.festivaleroGenerationSpeed *= 0.8;
+          this.targetGenerationSpeed *= 0.8;
           levelUpTimestamp = timestamp;
         }
-        this.gameLoop(festivaleroTimestamp, levelUpTimestamp);
+        this.gameLoop(targetTimestamp, levelUpTimestamp);
       });
     }
   };

@@ -10,10 +10,10 @@ let ctx = canvas.getContext("2d");
 
 let gameObj;
 
-let soundtrackObj = new Audio("../sound/soundtrack.mp3");
+let soundtrackObj = new Audio("./sound/soundtrack.mp3");
 soundtrackObj.volume = 0.05;
 
-let impactSoundObj = new Audio("../sound/impact.ogg");
+let impactSoundObj = new Audio("./sound/impact.ogg");
 
 startButton.addEventListener("click", () => {
   //hide splash screen

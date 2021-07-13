@@ -80,13 +80,13 @@ La Tomatina is a game, inspired by the Tomatina festival in Pamplona, Spain. In 
    - clotheRacksMove() {}
    - clotheRacksGetsHit() {}
 
-##States y States Transitions
+## States y States Transitions
 
 - splashScreen
 - gameScreen
 - gameoverScreen
 
-##Tasks
+## Tasks
 
 1. main - target DOM elements <!-- ok-->
 2. main - define canvas setup <!-- ok-->
@@ -119,7 +119,7 @@ La Tomatina is a game, inspired by the Tomatina festival in Pamplona, Spain. In 
 29. tomatoes - move pumpedUpTomato
 30. game - create random tomato in add tomato function
 
-##Additional Links
+## Additional Links
 
 **Trello**
 https://trello.com/b/Safym8kV/la-tomatina

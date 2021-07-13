@@ -1,7 +1,7 @@
 class Tomato {
   constructor(context, player) {
     this.image = new Image();
-    this.image.src = "../images/tomato.png";
+    this.image.src = "./images/tomato.png";
     this.width = 20;
     this.height = 20;
     this.x =
@@ -25,12 +25,12 @@ class Tomato {
     this.y -= this.speed;
   };
 
-  tomatoHitsFestivalero = (festivalero) => {
+  tomatoHitsTarget = (target) => {
     return (
-      this.x < festivalero.x + festivalero.width &&
-      this.x + this.width > festivalero.x &&
-      this.y < festivalero.y + festivalero.height &&
-      this.y + this.height > festivalero.y
+      this.x < target.x + target.width &&
+      this.x + this.width > target.x &&
+      this.y < target.y + target.height &&
+      this.y + this.height > target.y
     );
   };
 }

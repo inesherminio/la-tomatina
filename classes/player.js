@@ -5,11 +5,11 @@ class Player {
     this.x = canvas.width / 2;
     this.y = canvas.height - this.height - 10;
     this.imageRight = new Image();
-    this.imageRight.src = "../images/player-right.png";
+    this.imageRight.src = "./images/player-right.png";
     this.imageLeft = new Image();
-    this.imageLeft.src = "../images/player-left.png";
+    this.imageLeft.src = "./images/player-left.png";
     this.tomatoImage = new Image();
-    this.tomatoImage.src = "../images/tomato.png";
+    this.tomatoImage.src = "./images/tomato.png";
     this.ctx = context;
     this.side = "left";
   }
