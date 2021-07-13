@@ -36,6 +36,7 @@ class Game {
       if (event.code === "Space") {
         this.generateTomato();
         this.player.side = this.player.side === "left" ? "right" : "left";
+        this.player.tomatoSize = Math.round(Math.random() * 10);
       }
     });
   };
@@ -53,6 +54,17 @@ class Game {
 
   moveTomatoes = () => {
     this.tomatoes.forEach((tomato) => tomato.move());
+  };
+
+  removeTomatoes = () => {
+    this.tomatoes.forEach((tomato) => {
+      if (tomato.topCollision()) {
+        // search for tomato
+        const indexOfTomato = this.tomatoes.indexOf(tomato);
+        // remove the tomato
+        this.tomatoes.splice(indexOfTomato, 1);
+      }
+    });
   };
 
   // Festivaleros related methods

@@ -2,8 +2,9 @@ class Tomato {
   constructor(context, player) {
     this.image = new Image();
     this.image.src = "./images/tomato.png";
-    this.width = 20;
-    this.height = 20;
+    this.width = player.tomatoSize > 1 ? player.width / 3 : player.width / 1.5;
+    this.height =
+      player.tomatoSize > 1 ? player.height / 3 : player.height / 1.5;
     this.x =
       player.side === "left" ? player.x - 18 : player.x + player.width - 20;
     this.y = player.y - 20;
@@ -12,13 +13,7 @@ class Tomato {
   }
 
   draw = (player) => {
-    this.ctx.drawImage(
-      this.image,
-      this.x,
-      this.y,
-      player.width / 3,
-      player.height / 3
-    );
+    this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   };
 
   move = () => {
@@ -32,5 +27,9 @@ class Tomato {
       this.y < target.y + target.height &&
       this.y + this.height > target.y
     );
+  };
+
+  topCollision = () => {
+    return this.y - this.height < 0;
   };
 }
