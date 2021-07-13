@@ -10,9 +10,6 @@ let ctx = canvas.getContext("2d");
 
 let gameObj;
 
-let soundtrackObj = new Audio("./sound/soundtrack.mp3");
-soundtrackObj.volume = 0.05;
-
 let impactSoundObj = new Audio("./sound/impact.ogg");
 
 startButton.addEventListener("click", () => {
@@ -27,7 +24,7 @@ startButton.addEventListener("click", () => {
   //begin new game
   gameObj.setControls();
   gameObj.gameLoop();
-  soundtrackObj.play();
+
 });
 
 restartButton.addEventListener("click", () => {
@@ -42,5 +39,4 @@ restartButton.addEventListener("click", () => {
   //begin new game
   gameObj.setControls();
   gameObj.gameLoop();
-  soundtrackObj.play();
 });

@@ -2,7 +2,8 @@ class Game {
   constructor(context) {
     this.bg = new Image();
     this.bg.src = "./images/bg.jpg";
-    this.sound;
+    this.sound = new Audio("./sound/soundtrack.mp3");
+    this.sound.volume = 0.05;
     this.player = new Player(context);
     this.tomatoes = [];
     this.festivaleros = [];
@@ -15,8 +16,9 @@ class Game {
     this.splashTime = 750;
   }
 
-  drawBg = () => {
+  drawSceene = () => {
     this.ctx.drawImage(this.bg, 0, 0, canvas.width, canvas.height);
+    this.sound.play();
   };
 
   // All game controls go here
@@ -34,7 +36,6 @@ class Game {
       if (event.code === "Space") {
         this.generateTomato();
         this.player.side = this.player.side === "left" ? "right" : "left";
-        this.player.tomatoSize = Math.round(Math.random() * 2);
       }
     });
   };
@@ -125,7 +126,8 @@ class Game {
     }
   };
 
-  // Gameover function
+  // Gameover functions
+
   gameoverAction = () => {
     // stop game from running
     this.isGameOn = false;
@@ -134,16 +136,18 @@ class Game {
     // display gameover screen
     gameoverScreen.style.display = "flex";
     // stop soundtrack
-    soundtrackObj.muted = true;
+    this.sound.pause();
+    this.sound.currentTime = 0;
+    this.sound.muted = true;
   };
 
   gameoverCheck = () => {
-    if (
-      this.festivaleros.forEach((festivalero) => {
-        festivalero.floorCollision();
-      }) ||
-      this.hitClothesRack()
-    ) {
+    this.festivaleros.forEach((festivalero) => {
+      if (festivalero.floorCollision()) {
+        this.gameoverAction();
+      }
+    });
+    if (this.hitClothesRack()) {
       this.gameoverAction();
     }
   };
@@ -166,7 +170,7 @@ class Game {
   };
 
   drawElements = () => {
-    this.drawBg();
+    this.drawSceene();
     this.player.draw();
     this.drawTomatoes();
     this.drawFestivaleros();
