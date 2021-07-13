@@ -1,7 +1,7 @@
 class Game {
   constructor(context) {
     this.bg = new Image();
-    this.bg.src = "../images/bg.jpg";
+    this.bg.src = "./images/bg.jpg";
     this.sound;
     this.player = new Player(context);
     this.tomatoes = [];
