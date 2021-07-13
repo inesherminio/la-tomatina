@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🍅 La Tomatina</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--Splash screen-->
+    <div id="splash-screen" class="container">
+      <div id="heading">
+        <h1 id="game-title">La Tomatina</h1>
+        <img
+          src="../images/logo2.png"
+          alt="La tomatina game logo"
+          width="400"
+          id="logo"
+        />
+        <button id="start-btn">Start</button>
+      </div>
+      <div id="instructions">
+        <h3>How to play</h3>
+        <p>
+          Every year in Pamplona, Spain, people come together to party, throwing
+          tomatoes at each other, staining as many festivaleros as possible.
+          Your goal is to hit with tomatoes every festivalero that comes in your
+          way. If one of them reaches your side of the battlefield you lose the
+          game. It is time for you to join La Tomatina!
+        </p>
+        <div id="controls">
+          <div id="control-instructions">
+            <h4>Move</h4>
+            <img
+              src="../images/arrows.png"
+              alt="Move controls"
+              id="control-logos"
+            />
+          </div>
+          <div id="control-instructions">
+            <h4>Throw</h4>
+            <img
+              src="../images/spacebar.png"
+              alt="Throw controls"
+              id="control-logos"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Game screen-->
+    <div class="container" id="game-screen">
+      <header class="game-info">
+        <span id="scoreboard">Tomato Hits: </span>
+        <span id="hits">0</span>
+      </header>
+      <canvas id="my-canvas" width="850" height="500"></canvas>
+    </div>
+
+    <!--Gameover screen-->
+    <div id="gameover-screen" class="container">
+      <h1 id="gameover">Game Over</h1>
+      <img
+        src="../images/splash.png"
+        alt="Game over picture, a splattered tomato"
+        id="gameover-img"
+      />
+      <button id="restart-btn">Play Again!</button>
+    </div>
+
+    <!--Script links-->
+    <script src="./classes/player.js"></script>
+    <script src="./classes/festivalero.js"></script>
+    <script src="./classes/tomatoes.js"></script>
+    <script src="./classes/clothe-racks.js"></script>
+    <script src="./classes/game.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

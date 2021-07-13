@@ -1,0 +1,146 @@
+#my-canvas {
+  background-color: bisque;
+}
+
+#gameover-screen {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 40rem;
+}
+
+#game-screen {
+  display: none;
+  font-family: monospace;
+  color: white;
+  flex-direction: column;
+  height: 40rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#splash-screen {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 40rem;
+}
+
+#heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo {
+  margin-bottom: 60px;
+}
+
+#instructions {
+  background-color: #6ba96a;
+  color: #231f20;
+  width: 500px;
+  height: 28rem;
+  border: solid 4px white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+#controls {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+#control-logos {
+  height: 2rem;
+}
+
+#control-instructions {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+}
+
+#my-canvas {
+  display: block;
+  border-radius: 8px;
+}
+
+#start-btn {
+  width: 150px;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  height: 60px;
+  background-color: white;
+  border: solid 4px #6ba96a;
+  border-radius: 8px;
+  transition: all 200ms ease-in-out;
+}
+
+#start-btn:hover {
+  background-color: #6ba96a;
+}
+
+#restart-btn {
+  width: 220px;
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  height: 60px;
+  background-color: white;
+  border: solid 4px #6ba96a;
+  border-radius: 8px;
+  transition: all 200ms ease-in-out;
+}
+
+#restart-btn:hover {
+  background-color: #6ba96a;
+}
+
+#gameover-img {
+  width: 30rem;
+}
+
+#game-title {
+  font-size: 5rem;
+  color: white;
+  margin-top: 0;
+}
+
+#gameover {
+  font-size: 5rem;
+  color: white;
+  margin: 0;
+}
+
+.game-info {
+  font-size: 1.5rem;
+  padding-bottom: 30px;
+  text-align: left;
+  width: 850px;
+}
+
+body {
+  background-color: #231f20;
+  font-family: monospace;
+}
+
+h3 {
+  font-size: 2.2rem;
+  padding-left: 20px;
+  margin-bottom: 5px;
+}
+
+h4 {
+  margin: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
