@@ -15,6 +15,7 @@ class Game {
     this.levelUpSpeed = 10000;
     this.gameScore = 0;
     this.splashTime = 750;
+    this.playerLives = 3;
   }
 
   drawSceene = () => {
@@ -195,7 +196,8 @@ class Game {
     this.tomatoes.forEach((tomato) => {
       if (
         tomato.tomatoHitsTarget(this.player) &&
-        tomato.origin === "festivalero"
+        tomato.origin === "festivalero" &&
+        this.playerLives > 0
       ) {
         // search for tomato
         const indexOfTomato = this.tomatoes.indexOf(tomato);
@@ -203,8 +205,18 @@ class Game {
         impactSoundObj.play();
         // remove the splashed tomato
         this.tomatoes.splice(indexOfTomato, 1);
-        // gameover
-        this.gameoverAction();
+        // remove 1 life from player
+        this.playerLives -= 1;
+        //  change player's image
+        if (this.playerLives === 2) {
+          this.player.imageRight.src = "./images/player-right-half-red.png";
+          this.player.imageLeft.src = "./images/player-left-half-red.png";
+        } else if (this.playerLives === 1) {
+          this.player.imageRight.src = "./images/player-right-red.png";
+          this.player.imageLeft.src = "./images/player-left-red.png";
+        } else if (this.playerLives === 0) {
+          this.gameoverAction();
+        }
       }
     });
   };

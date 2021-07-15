@@ -1,25 +1,9 @@
-#my-canvas {
-  background-color: bisque;
-}
-
-#gameover-screen {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 40rem;
-}
-
-#game-screen {
-  display: none;
+body {
+  background-color: #231f20;
   font-family: monospace;
-  color: white;
-  flex-direction: column;
-  height: 6 0rem;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 20px;
 }
+
+/* splash screen styling */
 
 #splash-screen {
   display: flex;
@@ -42,7 +26,7 @@
   background-color: #6ba96a;
   color: #231f20;
   width: 500px;
-  height: 28rem;
+  height: 35rem;
   border: solid 4px white;
   border-radius: 16px;
   display: flex;
@@ -65,11 +49,6 @@
   height: 20%;
 }
 
-#my-canvas {
-  display: block;
-  border-radius: 8px;
-}
-
 #start-btn {
   width: 150px;
   font-family: monospace;
@@ -86,36 +65,50 @@
   background-color: #6ba96a;
 }
 
-#restart-btn {
-  width: 220px;
-  font-family: monospace;
-  font-size: 1.5rem;
-  font-weight: bolder;
-  height: 60px;
-  background-color: white;
-  border: solid 4px #6ba96a;
-  border-radius: 8px;
-  transition: all 200ms ease-in-out;
-}
-
-#restart-btn:hover {
-  background-color: #6ba96a;
-}
-
-#gameover-img {
-  width: 25rem;
-}
-
 #game-title {
   font-size: 5rem;
   color: white;
   margin-top: 0;
 }
 
-#gameover {
-  font-size: 5rem;
+h3 {
+  font-size: 2.2rem;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+h4 {
+  margin: 10px;
+}
+
+p {
+  font-size: 1.1rem;
+  padding-left: 20px;
+}
+
+li {
+  font-size: 1.1rem;
+  padding-left: 20px;
+}
+
+/* game screen styling */
+
+#game-screen {
+  display: none;
+  font-family: monospace;
   color: white;
-  margin: 0;
+  flex-direction: column;
+  height: 6 0rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 20px;
+}
+
+#my-canvas {
+  background-color: bisque;
+  display: block;
+  border-radius: 8px;
 }
 
 #festivaleros {
@@ -142,23 +135,38 @@
   display: none;
 }
 
-body {
-  background-color: #231f20;
+/* gameover screen styling */
+
+#gameover-screen {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 40rem;
+}
+
+#restart-btn {
+  width: 220px;
   font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  height: 60px;
+  background-color: white;
+  border: solid 4px #6ba96a;
+  border-radius: 8px;
+  transition: all 200ms ease-in-out;
 }
 
-h3 {
-  font-size: 2.2rem;
-  padding-left: 20px;
-  margin-bottom: 5px;
+#restart-btn:hover {
+  background-color: #6ba96a;
 }
 
-h4 {
-  margin: 10px;
+#gameover-img {
+  width: 25rem;
 }
 
-p {
-  font-size: 1.1rem;
-  padding-left: 20px;
-  padding-bottom: 20px;
+#gameover {
+  font-size: 5rem;
+  color: white;
+  margin: 0;
 }
