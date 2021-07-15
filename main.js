@@ -8,6 +8,7 @@ let festivalerosBox = document.querySelector("#festivaleros");
 let festivalero1 = document.querySelector("#festivalero1");
 let festivalero2 = document.querySelector("#festivalero2");
 let festivalero3 = document.querySelector("#festivalero3");
+let yourScore = document.querySelector("#your-score");
 
 let canvas = document.querySelector("#my-canvas");
 let ctx = canvas.getContext("2d");

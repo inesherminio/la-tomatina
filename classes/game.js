@@ -234,6 +234,8 @@ class Game {
     this.sound.pause();
     this.sound.currentTime = 0;
     this.sound.muted = true;
+    // update final score on gameover screen
+    yourScore.innerText = this.gameScore;
   };
 
   gameoverCheck = () => {
@@ -290,7 +292,7 @@ class Game {
           targetTimestamp = timestamp;
         }
         if (timestamp - levelUpTimestamp > this.levelUpSpeed) {
-          this.targetGenerationSpeed *= 0.8;
+          this.targetGenerationSpeed *= 0.9;
           levelUpTimestamp = timestamp;
         }
         this.gameLoop(targetTimestamp, levelUpTimestamp);

@@ -138,11 +138,11 @@ li {
 /* gameover screen styling */
 
 #gameover-screen {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
   height: 40rem;
+  display: none;
 }
 
 #restart-btn {
@@ -163,10 +163,40 @@ li {
 
 #gameover-img {
   width: 25rem;
+  margin-bottom: 40px;
 }
 
 #gameover {
   font-size: 5rem;
   color: white;
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#gameover-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#top-score {
+  background-color: #6ba96a;
+  color: #231f20;
+  width: 280px;
+  height: 10rem;
+  border: solid 4px white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#your-score {
+  font-size: 2rem;
+  padding: 0;
+}
+
+#score-announce {
+  padding: 0;
 }
