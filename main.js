@@ -4,6 +4,10 @@ let gameoverScreen = document.querySelector("#gameover-screen");
 let startButton = document.querySelector("#start-btn");
 let restartButton = document.querySelector("#restart-btn");
 let hitScore = document.querySelector("#hits");
+let festivalerosBox = document.querySelector("#festivaleros");
+let festivalero1 = document.querySelector("#festivalero1");
+let festivalero2 = document.querySelector("#festivalero2");
+let festivalero3 = document.querySelector("#festivalero3");
 
 let canvas = document.querySelector("#my-canvas");
 let ctx = canvas.getContext("2d");
@@ -24,7 +28,6 @@ startButton.addEventListener("click", () => {
   //begin new game
   gameObj.setControls();
   gameObj.gameLoop();
-
 });
 
 restartButton.addEventListener("click", () => {
@@ -36,6 +39,11 @@ restartButton.addEventListener("click", () => {
   gameObj = new Game(ctx);
   //zero scoreboard
   hitScore.innerHTML = "0";
+  //reset festivaleros winning box
+  festivalero1.style.display = "none";
+  festivalero2.style.display = "none";
+  festivalero2.style.display = "none";
+  festivalerosBox.style.background = "white";
   //begin new game
   gameObj.setControls();
   gameObj.gameLoop();

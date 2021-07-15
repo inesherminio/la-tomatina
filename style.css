@@ -15,9 +15,10 @@
   font-family: monospace;
   color: white;
   flex-direction: column;
-  height: 40rem;
+  height: 6 0rem;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin: 20px;
 }
 
 #splash-screen {
@@ -117,11 +118,28 @@
   margin: 0;
 }
 
+#festivaleros {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 30px;
+  width: 20rem;
+  height: 6rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .game-info {
   font-size: 1.5rem;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   text-align: left;
   width: 850px;
+}
+
+.festivalero-img {
+  width: 5rem;
+  height: 5rem;
+  display: none;
 }
 
 body {

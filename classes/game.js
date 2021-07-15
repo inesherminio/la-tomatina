@@ -7,6 +7,7 @@ class Game {
     this.player = new Player(context);
     this.tomatoes = [];
     this.festivaleros = [];
+    this.festivalerosThatWin = 0;
     this.clothesRack = [];
     this.isGameOn = true;
     this.ctx = context;
@@ -74,7 +75,10 @@ class Game {
   };
 
   generateFestivaleros = () => {
-    const newFestivalero = new Festivalero(this.ctx);
+    const typeOfFestivalero = () => {
+      return Math.round(Math.random()) === 0;
+    };
+    const newFestivalero = new Festivalero(this.ctx, typeOfFestivalero());
     this.festivaleros.push(newFestivalero);
   };
 
@@ -100,6 +104,30 @@ class Game {
           this.tomatoes.splice(indexOfTomato, 1);
         }
       });
+    });
+  };
+
+  festivalerosWinning = () => {
+    this.festivaleros.forEach((festivalero) => {
+      if (festivalero.floorCollision()) {
+        // search for festivalero
+        const indexOfFestivalero = this.festivaleros.indexOf(festivalero);
+        // remove the hit festivalero
+        this.festivaleros.splice(indexOfFestivalero, 1);
+        // add 1 to number of festivaleros that won
+        this.festivalerosThatWin += 1;
+        // display 1 festivalero bellow the canvas and change the color
+        if (this.festivalerosThatWin === 1) {
+          festivalero1.style.display = "block";
+          festivalerosBox.style.background = "grey";
+        } else if (this.festivalerosThatWin === 2) {
+          festivalero2.style.display = "block";
+          festivalerosBox.style.background = "#6ba96a";
+        } else {
+          festivalero3.style.display = "block";
+          festivalerosBox.style.background = "#D41920";
+        }
+      }
     });
   };
 
@@ -154,12 +182,7 @@ class Game {
   };
 
   gameoverCheck = () => {
-    this.festivaleros.forEach((festivalero) => {
-      if (festivalero.floorCollision()) {
-        this.gameoverAction();
-      }
-    });
-    if (this.hitClothesRack()) {
+    if (this.festivalerosThatWin > 3 || this.hitClothesRack()) {
       this.gameoverAction();
     }
   };
@@ -178,6 +201,7 @@ class Game {
 
   checkAllCollisions = () => {
     this.hitFestivaleros();
+    this.festivalerosWinning();
     this.gameoverCheck();
   };
 
