@@ -2,7 +2,10 @@ class Festivalero {
   constructor(context, boolean) {
     this.width = 80;
     this.height = 80;
-    this.x = Math.max(0, Math.floor(Math.random() * canvas.width) - this.width);
+    this.x = Math.max(
+      10,
+      Math.floor(Math.random() * canvas.width) - this.width + 20
+    );
     this.y = 10;
     this.image = new Image();
     this.image.src = "./images/festivalero.png";
@@ -25,13 +28,15 @@ class Festivalero {
       this.width,
       this.height
     );
-    this.ctx.drawImage(
-      this.tomatoImage,
-      this.attacker === true ? this.x - 18 : 0,
-      this.attacker === true ? this.y - 10 : 0,
-      this.attacker === true ? this.width / 3 : 0,
-      this.attacker === true ? this.height / 3 : 0
-    );
+    if (this.y <= 50) {
+      this.ctx.drawImage(
+        this.tomatoImage,
+        this.attacker === true ? this.x - 18 : 0,
+        this.attacker === true ? this.y - 10 : 0,
+        this.attacker === true ? this.width / 3 : 0,
+        this.attacker === true ? this.height / 3 : 0
+      );
+    }
   };
 
   move = () => {

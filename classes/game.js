@@ -35,7 +35,7 @@ class Game {
     });
     window.addEventListener("keyup", (event) => {
       if (event.code === "Space") {
-        this.generateTomato();
+        this.generateTomatoPlayer();
         this.player.side = this.player.side === "left" ? "right" : "left";
         this.player.tomatoSize = Math.round(Math.random() * 10);
       }
@@ -48,9 +48,27 @@ class Game {
     this.tomatoes.forEach((tomato) => tomato.draw(this.player));
   };
 
-  generateTomato = () => {
-    const newTomato = new Tomato(this.ctx, this.player);
+  generateTomatoPlayer = () => {
+    const newTomato = new Tomato(this.ctx, this.player, "player");
     this.tomatoes.push(newTomato);
+  };
+
+  generateTomatoFestivalero = () => {
+    const newTomato = new Tomato(
+      this.ctx,
+      this.player,
+      "festivalero",
+      this.festivaleros[this.festivaleros.length - 1]
+    );
+    this.tomatoes.push(newTomato);
+  };
+
+  festivaleroThrowsTomato = () => {
+    this.festivaleros.forEach((festivalero) => {
+      if (festivalero.attacker === true && festivalero.y === 50) {
+        this.generateTomatoFestivalero();
+      }
+    });
   };
 
   moveTomatoes = () => {
@@ -59,7 +77,7 @@ class Game {
 
   removeTomatoes = () => {
     this.tomatoes.forEach((tomato) => {
-      if (tomato.topCollision()) {
+      if (tomato.canvasCollision()) {
         // search for tomato
         const indexOfTomato = this.tomatoes.indexOf(tomato);
         // remove the tomato
@@ -83,13 +101,18 @@ class Game {
   };
 
   moveFestivaleros = () => {
-    this.festivaleros.forEach((festivalero) => festivalero.move());
+    this.festivaleros.forEach((festivalero) => {
+      festivalero.move();
+    });
   };
 
   hitFestivaleros = () => {
     this.festivaleros.forEach((festivalero) => {
       this.tomatoes.forEach((tomato) => {
-        if (tomato.tomatoHitsTarget(festivalero)) {
+        if (
+          tomato.tomatoHitsTarget(festivalero) &&
+          tomato.origin === "player"
+        ) {
           // search for festivalero and tomato
           const indexOfFestivalero = this.festivaleros.indexOf(festivalero);
           const indexOfTomato = this.tomatoes.indexOf(tomato);
@@ -149,7 +172,7 @@ class Game {
   hitClothesRack = () => {
     this.clothesRack.forEach((clothe) => {
       this.tomatoes.forEach((tomato) => {
-        if (tomato.tomatoHitsTarget(clothe)) {
+        if (tomato.tomatoHitsTarget(clothe) && tomato.origin === "player") {
           // play impact audio
           impactSoundObj.play();
           this.gameoverAction();
@@ -164,6 +187,26 @@ class Game {
     } else {
       this.generateClothesRack();
     }
+  };
+
+  // Player related methods
+
+  hitPlayer = () => {
+    this.tomatoes.forEach((tomato) => {
+      if (
+        tomato.tomatoHitsTarget(this.player) &&
+        tomato.origin === "festivalero"
+      ) {
+        // search for tomato
+        const indexOfTomato = this.tomatoes.indexOf(tomato);
+        // play impact audio
+        impactSoundObj.play();
+        // remove the splashed tomato
+        this.tomatoes.splice(indexOfTomato, 1);
+        // gameover
+        this.gameoverAction();
+      }
+    });
   };
 
   // Gameover functions
@@ -197,12 +240,15 @@ class Game {
     this.moveTomatoes();
     this.moveFestivaleros();
     this.moveClothesRack();
+    this.festivaleroThrowsTomato();
   };
 
   checkAllCollisions = () => {
     this.hitFestivaleros();
     this.festivalerosWinning();
     this.gameoverCheck();
+    this.removeTomatoes();
+    this.hitPlayer();
   };
 
   drawElements = () => {

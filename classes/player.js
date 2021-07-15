@@ -27,7 +27,7 @@ class Player {
     this.ctx.drawImage(
       this.tomatoImage,
       this.side === "left" ? this.x - 18 : this.x + tomatoX,
-      this.tomatoSize > 1 ? this.y - 10 : this.y - 50,
+      this.tomatoSize > 1 ? this.y - 10 : this.y - 47,
       this.tomatoSize > 1 ? this.width / 3 : this.width / 1.5,
       this.tomatoSize > 1 ? this.height / 3 : this.height / 1.5
     );
