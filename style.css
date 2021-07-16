@@ -111,9 +111,18 @@ li {
   border-radius: 8px;
 }
 
+.game-info {
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+  text-align: left;
+  width: 850px;
+}
+
 #festivaleros {
   margin-top: 20px;
-  background-color: white;
+  margin-right: 70px;
+  background-color: grey;
+  opacity: 0.8;
   border-radius: 30px;
   width: 20rem;
   height: 6rem;
@@ -122,16 +131,39 @@ li {
   align-items: center;
 }
 
-.game-info {
-  font-size: 1.5rem;
-  padding-bottom: 20px;
-  text-align: left;
-  width: 850px;
-}
-
 .festivalero-img {
   width: 5rem;
   height: 5rem;
+  display: none;
+}
+
+#canvas-and-lives {
+  display: flex;
+  align-items: center;
+}
+
+#player-lives {
+  margin-left: 20px;
+  background-color: grey;
+  opacity: 0.8;
+  border-radius: 30px;
+  width: 6rem;
+  height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tomato-img {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: block;
+}
+
+.splash-img {
+  width: 4.5rem;
+  height: 4.5rem;
   display: none;
 }
 

@@ -9,6 +9,11 @@ let festivalero1 = document.querySelector("#festivalero1");
 let festivalero2 = document.querySelector("#festivalero2");
 let festivalero3 = document.querySelector("#festivalero3");
 let yourScore = document.querySelector("#your-score");
+let tomato1 = document.querySelector("#tomato1");
+let tomato2 = document.querySelector("#tomato2");
+let tomatoesBox = document.querySelector("#player-lives");
+let splash1 = document.querySelector("#splash1");
+let splash2 = document.querySelector("#splash2");
 
 let canvas = document.querySelector("#my-canvas");
 let ctx = canvas.getContext("2d");
@@ -43,8 +48,12 @@ restartButton.addEventListener("click", () => {
   //reset festivaleros winning box
   festivalero1.style.display = "none";
   festivalero2.style.display = "none";
-  festivalero2.style.display = "none";
-  festivalerosBox.style.background = "white";
+  festivalero3.style.display = "none";
+  festivalerosBox.style.background = "grey";
+  tomato1.style.display = "block";
+  tomato2.style.display = "block";
+  splash1.style.display = "none";
+  splash2.style.display = "none";
   //begin new game
   gameObj.setControls();
   gameObj.gameLoop();

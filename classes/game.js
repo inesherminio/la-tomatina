@@ -11,7 +11,7 @@ class Game {
     this.clothesRack = [];
     this.isGameOn = true;
     this.ctx = context;
-    this.targetGenerationSpeed = 2000;
+    this.targetGenerationSpeed = 3000;
     this.levelUpSpeed = 10000;
     this.gameScore = 0;
     this.splashTime = 750;
@@ -143,10 +143,10 @@ class Game {
         // display 1 festivalero bellow the canvas and change the color
         if (this.festivalerosThatWin === 1) {
           festivalero1.style.display = "block";
-          festivalerosBox.style.background = "grey";
+          //festivalerosBox.style.background = "grey";
         } else if (this.festivalerosThatWin === 2) {
           festivalero2.style.display = "block";
-          festivalerosBox.style.background = "#6ba96a";
+          //festivalerosBox.style.background = "#6ba96a";
         } else {
           festivalero3.style.display = "block";
           festivalerosBox.style.background = "#D41920";
@@ -211,9 +211,15 @@ class Game {
         if (this.playerLives === 2) {
           this.player.imageRight.src = "./images/player-right-half-red.png";
           this.player.imageLeft.src = "./images/player-left-half-red.png";
+          tomato1.style.display = "none";
+          splash1.style.display = "block";
+          //tomatoesBox.style.background = "#6ba96a";
         } else if (this.playerLives === 1) {
           this.player.imageRight.src = "./images/player-right-red.png";
           this.player.imageLeft.src = "./images/player-left-red.png";
+          tomato2.style.display = "none";
+          splash2.style.display = "block";
+          //tomatoesBox.style.background = "#D41920";
         } else if (this.playerLives === 0) {
           this.gameoverAction();
         }
